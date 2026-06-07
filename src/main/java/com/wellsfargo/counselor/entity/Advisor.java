@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Advisor {
@@ -27,6 +29,9 @@ public class Advisor {
 
     @Column(nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "advisor")
+    private List<Client> clients;
 
     protected Advisor() {
 
@@ -82,5 +87,13 @@ public class Advisor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 }
